@@ -12,56 +12,53 @@
 
   <!-- Navigation Bar -->
   <header class="navbar">
-    <div class="container nav-container">
-      <div class="logo">
-        <a href="index.html">NayaSa</a>
-      </div>
-      <nav class="nav-links">
-        <ul style="display: flex; align-items: center;" class="nav-menu" id="nav-menu">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="#features" class="nav-link">Features</a></li>
-          <li><a href="#sponsors" class="nav-link">Sponsors</a></li>
-          <li><a href="#clientele" class="nav-link">Our Clientele</a></li>
-          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-          <li style="border: 1px solid #4f46e5; border-radius: 6px; background-color: transparent;">
-            <a href="login.html" 
-              style="display: inline-block; padding: 8px 16px; color: #4f46e5; text-decoration: none; font-weight: 500; border-radius: 6px; transition: all 0.3s ease;"
-              onmouseover="this.style.backgroundColor='#4f46e5'; this.style.color='white';"
-              onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4f46e5';">
-              Log In
-            </a>
-        </li>
+  <div class="container nav-container">
+    <div class="logo">
+      <a href="index.html">NayaSa</a>
+    </div>
 
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+    </button>
+
+    <!-- Nav Links -->
+    <nav class="nav-links">
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#sponsors" class="nav-link">Sponsors</a></li>
+        <li><a href="#clientele" class="nav-link">Our Clientele</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li style="border: 1px solid #4f46e5; border-radius: 6px; background-color: transparent;">
+          <a href="login.html"
+            style="display: inline-block; padding: 8px 16px; color: #4f46e5; text-decoration: none; font-weight: 500; border-radius: 6px; transition: all 0.3s ease;"
+            onmouseover="this.style.backgroundColor='#4f46e5'; this.style.color='white';"
+            onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4f46e5';">
+            Log In
+          </a>
+        </li>
         <li id="Sign-up" style="border: none; border-radius: 6px; background-color: #4f46e5;">
-          <a href="register.html" 
+          <a href="register.html"
             style="display: inline-block; padding: 8px 16px; color: white; text-decoration: none; font-weight: 500; border-radius: 6px; transition: all 0.3s ease;"
             onmouseover="this.style.backgroundColor='#4338ca';"
             onmouseout="this.style.backgroundColor='#4f46e5';">
             Sign Up
           </a>
         </li>
-
       </ul>
-      </nav>
+    </nav>
 
-      <!-- Search and Toggle -->
-      <div class="nav-actions">
-        <div class="search-box">
-          <input style="border: solid black 1px;" type="text" placeholder="Search..." class="search-input" />
-          <button class="search-btn"><i class="icon-search"></i></button>
-        </div>
-        <button id="darkModeToggle" class="toggle-btn" aria-label="Toggle Dark Mode">
-          <i class="icon-moon"></i>
-        </button>
-        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
-          <span class="menu-bar"></span>
-          <span class="menu-bar"></span>
-          <span class="menu-bar"></span>
-        </button>
-      </div>
-    </div>
-  </header>
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="toggle-btn" aria-label="Toggle Dark Mode">
+      <i class="icon-moon"></i>
+    </button>
+  </div>
+</header>
+
 
 <section class="hero-section">
   <div class="container hero-container">
@@ -330,6 +327,19 @@
     <div class="loader-spinner"></div>
     <p>Loading NayaSa...</p>
   </div>
+  <script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  toggleBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+
+    // Optional: toggle aria-expanded for accessibility
+    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', !expanded);
+  });
+</script>
+
 
 </body>
 </html>
