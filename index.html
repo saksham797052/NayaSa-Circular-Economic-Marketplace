@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>NayaSa – Circular Economy Marketplace</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script defer src="script.js"></script>
+</head>
+<body class="light-mode">
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <a href="index.html">NayaSa</a>
+      </div>
+      <nav class="nav-links">
+        <ul style="display: flex; align-items: center;" class="nav-menu" id="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#sponsors" class="nav-link">Sponsors</a></li>
+          <li><a href="#clientele" class="nav-link">Our Clientele</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li style="border: 1px solid #4f46e5; border-radius: 6px; background-color: transparent;">
+            <a href="login.html" 
+              style="display: inline-block; padding: 8px 16px; color: #4f46e5; text-decoration: none; font-weight: 500; border-radius: 6px; transition: all 0.3s ease;"
+              onmouseover="this.style.backgroundColor='#4f46e5'; this.style.color='white';"
+              onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4f46e5';">
+              Log In
+            </a>
+        </li>
+
+        <li id="Sign-up" style="border: none; border-radius: 6px; background-color: #4f46e5;">
+          <a href="register.html" 
+            style="display: inline-block; padding: 8px 16px; color: white; text-decoration: none; font-weight: 500; border-radius: 6px; transition: all 0.3s ease;"
+            onmouseover="this.style.backgroundColor='#4338ca';"
+            onmouseout="this.style.backgroundColor='#4f46e5';">
+            Sign Up
+          </a>
+        </li>
+
+      </ul>
+      </nav>
+
+      <!-- Search and Toggle -->
+      <div class="nav-actions">
+        <div class="search-box">
+          <input style="border: solid black 1px;" type="text" placeholder="Search..." class="search-input" />
+          <button class="search-btn"><i class="icon-search"></i></button>
+        </div>
+        <button id="darkModeToggle" class="toggle-btn" aria-label="Toggle Dark Mode">
+          <i class="icon-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+<section class="hero-section">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">Empowering a Circular Future with NayaSa</h1>
+      <p class="hero-subtitle">
+        Reuse, Repair, and Upcycle – Join the movement to reduce waste and build a more sustainable tomorrow.
+      </p>
+      <div class="hero-buttons">
+        <a href="pricing.html" class="btn btn-primary">Start Free Trial</a>
+        <a href="demo.html" class="btn btn-outline">Watch Demo</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img 
+        src="Dashboard.png" 
+        alt="NayaSa Dashboard Preview"
+        style="max-width: 500px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);"
+      />
+    </div>
+  </div>
+</section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose NayaSa?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="icon-reuse"></i></div>
+          <h3 class="feature-title">Reuse Products</h3>
+          <p class="feature-description">
+            Extend the life of everyday products by giving them a second home.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="icon-repair"></i></div>
+          <h3 class="feature-title">Repair & Maintain</h3>
+          <p class="feature-description">
+            Access professional repair services to avoid discarding broken items.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="icon-upcycle"></i></div>
+          <h3 class="feature-title">Upcycle Creatively</h3>
+          <p class="feature-description">
+            Turn waste into wonder with beautiful and useful upcycled products.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- Clientele Slider -->
+<section class="clientele-section" id="clientele">
+  <div class="clientele-heading-container">
+    <h2 style="color: white;" class="section-title">Our Conscious Clientele</h2>
+  </div>
+
+  <div class="clientele-slider-wrapper">
+    <div class="clientele-slider-track">
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/raymond.png?v=1741326130" alt="Raymond" class="clientele-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/amazon.png?v=1741326130" alt="Amazon" class="clientele-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/bajaj.png?v=1741326130" alt="Bajaj" class="clientele-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Bosch.png?v=1741326130" alt="Bosch" class="clientele-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Deloitte.png?v=1741326130" alt="Deloitte" class="clientele-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/zoom.png?v=1741326130" alt="Zoom" class="clientele-logo" />
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Shop By Category -->
+  <section class="category-section">
+    <div class="container">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="category-grid">
+        <a href="category.html#clothing" class="category-card">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/371f1215-687a-4c56-bd0f-d1f51297d6bf.png" alt="Clothing" class="category-img" />
+          <span class="category-label"> <b>Clothing </b><br>
+          <p style="color: grey;">Unique wearable art</p></span>
+        </a>
+        <a href="category.html#accessories" class="category-card">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bc88d1cd-9080-40c8-9fe9-973cc0321132.png" alt="Accessories" class="category-img" />
+          <span class="category-label"><b>Accessories</b> <br>
+          <p style="color: grey;">Statement Pieces</p></span>
+        </a>
+        <a href="category.html#homedecor" class="category-card">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/33a18964-d1a8-40b9-b92f-0b148b362798.png" alt="Home Decor" class="category-img" />
+          <span class="category-label"><b>Home Decor</b> <br>
+          <p style="color: grey;">Sustainable living</p></span>
+        </a>
+        <a href="category.html#custom" class="category-card">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/abe38c88-6cd4-485d-a0e8-fe0b64bac517.png" alt="Custom Orders" class="category-img" />
+          <span class="category-label"><b>Custom Orders</b> <br>
+          <p style="color: grey;">Personalized designs</p></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Upcycled Pieces -->
+  <section class="featured-upcycled-section">
+    <div class="container">
+      <h2 class="section-title">Featured Upcycled Pieces</h2>
+      <div class="upcycled-grid">
+        <a href="recycle-process.html#fabric" class="upcycled-item">
+          <div class="upcycled-box">Fabric</div>
+        </a>
+        <a href="recycle-process.html#wood" class="upcycled-item">
+          <div class="upcycled-box">Wood</div>
+        </a>
+        <a href="recycle-process.html#metal" class="upcycled-item">
+          <div class="upcycled-box">Metal</div>
+        </a>
+        <a href="recycle-process.html#plastic" class="upcycled-item">
+          <div class="upcycled-box">Plastic</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How NayaSa Works -->
+  <section class="how-it-works-section">
+    <div class="container">
+      <h2 class="section-title">How NayaSa Works</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-number">1</span>
+          <h3 class="step-title">Discover</h3>
+          <p class="step-description">Browse curated listings from upcyclers and donors.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">2</span>
+          <h3 class="step-title">Choose</h3>
+          <p class="step-description">Select what you need based on category or need.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">3</span>
+          <h3 class="step-title">Engage</h3>
+          <p class="step-description">Interact with the donor, seller, or service provider.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">4</span>
+          <h3 class="step-title">Transform</h3>
+          <p class="step-description">Receive, repair, or upcycle as per your creativity!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors Slider -->
+  <section id="sponsors" class="sponsors-section">
+  <div class="sponsors-heading-container">
+    <h2 class="section-title">Our Proud Sponsors</h2>
+  </div>
+
+  <div class="sponsor-slider-wrapper">
+    <div class="sponsor-slider-track">
+      <!-- Sponsor Logos -->
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/wildcraft.png?v=1741779993" alt="Wildcraft" class="sponsor-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Lafolie.png?v=1741779993" alt="Lafolie" class="sponsor-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Assembly.png?v=1741779993" alt="Assembly" class="sponsor-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/BlueTokai.png?v=1741779993" alt="Blue Tokai" class="sponsor-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Boat.png?v=1741779993" alt="Boat" class="sponsor-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Borosil.png?v=1741779993" alt="Borosil" class="sponsor-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Carvaan.png?v=1741779993" alt="Carvaan" class="sponsor-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Cross.png?v=1741779993" alt="Cross" class="sponsor-logo" />
+      <img src="https://cdn.shopify.com/s/files/1/0701/5396/1684/files/Entisi.png?v=1741779993" alt="Entisi" class="sponsor-logo" />
+    </div>
+  </div>
+</section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">What is NayaSa?</button>
+          <div class="faq-answer">NayaSa is a circular economy platform for donating, buying, or upcycling goods.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do I donate my old items?</button>
+          <div class="faq-answer">You can list your items for donation through your dashboard after login.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Are there any service charges?</button>
+          <div class="faq-answer">Basic usage is free. We offer premium plans for added visibility and features.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I track donations or deliveries?</button>
+          <div class="faq-answer">Yes, tracking is available for logistics-based deliveries and pickups.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is there a mobile app?</button>
+          <div class="faq-answer">Mobile app is coming soon for both Android and iOS platforms.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn More -->
+  <section class="learn-more-section">
+    <div class="container">
+      <h2 class="section-title">Learn More About Us</h2>
+      <div class="learn-more-box">
+        <p>Want to understand our mission, vision, and how we're transforming communities?</p>
+        <a href="learnmore.html" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscribe Section -->
+  <section class="subscribe-section">
+    <div class="container">
+      <h2 class="section-title">Stay Updated</h2>
+      <form class="subscribe-form" action="pricing.html" method="GET">
+        <input type="email" placeholder="Enter your email..." required class="subscribe-input" />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="container footer-container">
+      <div class="footer-about">
+        <h3>NayaSa</h3>
+        <p>A sustainable platform for donations, resale, and repairs to build a circular economy.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="learnmore.html">Learn More</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="help.html">Help Center</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="404.html">404 Page</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 NayaSa. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top-btn" id="scroll-top-btn" title="Scroll to Top">
+    ↑
+  </button>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="page-loader">
+    <div class="loader-spinner"></div>
+    <p>Loading NayaSa...</p>
+  </div>
+
+</body>
+</html>

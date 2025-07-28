@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – NayaSa</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body class="light-mode">
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>Welcome Back</h2>
+        <p>Login to continue to NayaSa</p>
+      </div>
+
+      <form action="dashboard.html" method="POST" class="auth-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-full">Login</button>
+        </div>
+        <div class="form-meta">
+          <a href="#" class="form-link">Forgot password?</a>
+          <p>Don't have an account? <a href="register.html" class="form-link">Register</a></p>
+        </div>
+      </form>
+
+      <div class="divider"><span>OR</span></div>
+      <div class="social-login">
+        <button class="social-btn google">Continue with Google</button>
+        <button class="social-btn facebook">Continue with Facebook</button>
+      </div>
+    </div>
+  </div>
+  <button class="scroll-top-btn" id="scroll-top-btn" title="Scroll to Top">↑</button>
+
+</body>
+</html>
