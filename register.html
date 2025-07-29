@@ -139,7 +139,42 @@
         </form>
     </div>
 
-    <script>
+    <script>suggestBtn.addEventListener('click', () => {
+    const fullName = fullNameInput.value;
+    if (!fullName) {
+        feedbackDiv.textContent = "Please enter your full name first!";
+        return;
+    }
+
+    feedbackDiv.textContent = "Thinking of a cool name...";
+    suggestBtn.classList.add('loading');
+    suggestBtn.disabled = true;
+
+    // Simulate API call delay
+    setTimeout(() => {
+        // Hardcoded suggestions instead of a real API call
+        const fakeSuggestions = ["NayaStyle", "EcoThread", "ReWearPro", "GreenCloset", "UpstyleGuru"];
+        
+        // If we don't have suggestions yet, set them
+        if (suggestions.length === 0) {
+            suggestions = fakeSuggestions;
+            currentIndex = 0;
+        } else {
+            // Cycle to the next suggestion
+            currentIndex = (currentIndex + 1) % suggestions.length;
+        }
+        
+        usernameInput.value = suggestions[currentIndex];
+        feedbackDiv.textContent = "✨ Here's an idea! Click ✨ again for more.";
+        
+        // Trigger label animation
+        usernameInput.focus();
+        usernameInput.blur();
+        
+        suggestBtn.classList.remove('loading');
+        suggestBtn.disabled = false;
+    }, 800); // 800ms delay
+});
         // --- Gemini API Integration for Username Suggestion ---
         const suggestBtn = document.getElementById('suggestBtn');
         const fullNameInput = document.getElementById('fullName');
