@@ -139,133 +139,60 @@
         </form>
     </div>
 
-    <script>suggestBtn.addEventListener('click', () => {
-    const fullName = fullNameInput.value;
-    if (!fullName) {
-        feedbackDiv.textContent = "Please enter your full name first!";
-        return;
-    }
-
-    feedbackDiv.textContent = "Thinking of a cool name...";
-    suggestBtn.classList.add('loading');
-    suggestBtn.disabled = true;
-
-    // Simulate API call delay
-    setTimeout(() => {
-        // Hardcoded suggestions instead of a real API call
-        const fakeSuggestions = ["NayaStyle", "EcoThread", "ReWearPro", "GreenCloset", "UpstyleGuru"];
-        
-        // If we don't have suggestions yet, set them
-        if (suggestions.length === 0) {
-            suggestions = fakeSuggestions;
-            currentIndex = 0;
-        } else {
-            // Cycle to the next suggestion
-            currentIndex = (currentIndex + 1) % suggestions.length;
-        }
-        
-        usernameInput.value = suggestions[currentIndex];
-        feedbackDiv.textContent = "✨ Here's an idea! Click ✨ again for more.";
-        
-        // Trigger label animation
-        usernameInput.focus();
-        usernameInput.blur();
-        
-        suggestBtn.classList.remove('loading');
-        suggestBtn.disabled = false;
-    }, 800); // 800ms delay
-});
-        // --- Gemini API Integration for Username Suggestion ---
+    <script>
+        // --- Get references to the HTML elements ---
         const suggestBtn = document.getElementById('suggestBtn');
         const fullNameInput = document.getElementById('fullName');
         const usernameInput = document.getElementById('username');
         const feedbackDiv = document.getElementById('suggestion-feedback');
-        let suggestions = [];
+    
+        // --- Database of all pre-defined suggestions ---
+        const allSuggestions = {
+            "lily": ["NayaLily", "LilyThreads", "EcoWearLily", "TheStyleLily", "UpcycleLily", "GreenClosetLily", "ReWearLily", "LilyInLoop", "SustainableLily", "UrbanThreadsLily", "LilyFits", "NayaVibeLily", "TheEcoLily", "MyNayaLily", "LilyUpcycles", "ReVibeLily", "LilyNayaStyle", "EcoThreadsPro", "GreenFitGuru", "LilyLoop25"],
+            "nitish": ["NayaNitish", "NitishThreads", "EcoWearNitish", "TheStyleGuru", "UpcycleNitish", "GreenClosetNitish", "ReWearPro", "NitishInLoop", "SustainableStyle", "UrbanThreads", "NitishFits", "NayaVibeNitish", "TheEcoNitish", "MyNayaCloset", "NitishUpcycles", "ReVibeNitish", "NitishNayaStyle", "EcoThreadsPro", "GreenFitGuru", "NitishLoop25"],
+            "rituraj": ["NayaRituraj", "RituThreads", "EcoWearRitu", "TheStyleRituraj", "UpcycleRituraj", "GreenClosetRitu", "ReWearRituraj", "RiturajInLoop", "SustainableRitu", "UrbanThreadsRitu", "RiturajFits", "NayaVibeRitu", "TheEcoRituraj", "MyNayaRituraj", "RiturajUpcycles", "ReVibeRitu", "RiturajNayaStyle", "RituThreadsPro", "GreenFitGuru", "RiturajLoop25"],
+            "saksham": ["NayaSaksham", "SakshamThreads", "EcoWearSaksham", "TheStyleSaksham", "UpcycleSaksham", "GreenClosetSaksham", "ReWearSaksham", "SakshamInLoop", "SustainableSaksham", "UrbanThreadsSaksham", "SakshamFits", "NayaVibeSaksham", "TheEcoSaksham", "MyNayaSaksham", "SakshamUpcycles", "ReVibeSaksham", "SakshamNayaStyle", "SakshamThreadsPro", "GreenFitGuru", "SakshamLoop25"],
+            "sikha": ["NayaSikha", "SikhaThreads", "EcoWearSikha", "TheStyleSikha", "UpcycleSikha", "GreenClosetSikha", "ReWearSikha", "SikhaInLoop", "SustainableSikha", "UrbanThreadsSikha", "SikhaFits", "NayaVibeSikha", "TheEcoSikha", "MyNayaSikha", "SikhaUpcycles", "ReVibeSikha", "SikhaNayaStyle", "SikhaThreadsPro", "GreenFitGuru", "SikhaLoop25"]
+        };
+    
+        let currentSuggestions = [];
         let currentIndex = 0;
-
-        suggestBtn.addEventListener('click', async () => {
-            const fullName = fullNameInput.value;
-            if (!fullName) {
+        let currentName = "";
+    
+        // --- Add the event listener to the magic button ---
+        suggestBtn.addEventListener('click', () => {
+            // Get the full name from the input and normalize it (lowercase, no extra spaces)
+            const inputName = fullNameInput.value.trim().toLowerCase();
+    
+            if (!inputName) {
                 feedbackDiv.textContent = "Please enter your full name first!";
                 return;
             }
-
-            // Cycle through existing suggestions first
-            if (suggestions.length > 0) {
-                currentIndex = (currentIndex + 1) % suggestions.length;
-                usernameInput.value = suggestions[currentIndex];
-                // Trigger label animation
+    
+            // Check if the name exists in our suggestions database
+            if (allSuggestions[inputName]) {
+                // If the user types a new name, reset the suggestions list for that name
+                if (currentName !== inputName) {
+                    currentName = inputName;
+                    currentSuggestions = allSuggestions[inputName];
+                    currentIndex = 0;
+                } else {
+                    // If it's the same name, just cycle to the next suggestion
+                    currentIndex = (currentIndex + 1) % currentSuggestions.length;
+                }
+    
+                usernameInput.value = currentSuggestions[currentIndex];
+                feedbackDiv.textContent = "✨ Here's an idea! Click ✨ again for more.";
+                
+                // Trigger the label animation by focusing and blurring the input
                 usernameInput.focus();
                 usernameInput.blur();
-                return;
-            }
-
-            feedbackDiv.textContent = "Thinking of a cool name...";
-            suggestBtn.classList.add('loading');
-            suggestBtn.disabled = true;
-
-            try {
-                // Construct the prompt for the Gemini API
-                const prompt = `Suggest 5 creative and unique usernames for a user named '${fullName}' who is signing up for "NayaSa", an app about recycling clothes. The usernames should be trendy, positive, and related to sustainability or fashion. Return the result as a JSON object with a single key "usernames" which is an array of 5 username strings. For example: {"usernames": ["EcoChic${fullName.split(' ')[0]}", "ReStyle${fullName.split(' ')[0]}", "GreenThread${fullName.split(' ')[0]}", "NayaStyle", "UpcycleGuru"]}`;
-
-                const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-                const payload = { 
-                    contents: chatHistory,
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "usernames": { 
-                                    type: "ARRAY",
-                                    items: { type: "STRING" }
-                                }
-                            }
-                        }
-                    }
-                };
-                
-                const apiKey = ""; // API key will be provided by the environment
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
-
-                // Fetch suggestions from Gemini API
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`API call failed with status: ${response.status}`);
-                }
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
-                    const parsedJson = JSON.parse(result.candidates[0].content.parts[0].text);
-                    suggestions = parsedJson.usernames || [];
-                    if (suggestions.length > 0) {
-                        currentIndex = 0;
-                        usernameInput.value = suggestions[currentIndex];
-                        feedbackDiv.textContent = "✨ Here's an idea! Click ✨ again for more.";
-                        // Trigger label animation
-                        usernameInput.focus();
-                        usernameInput.blur();
-                    } else {
-                        feedbackDiv.textContent = "Couldn't generate a name. Try again!";
-                        suggestions = []; // Reset suggestions
-                    }
-                } else {
-                     throw new Error("Unexpected API response structure.");
-                }
-
-            } catch (error) {
-                console.error("Error fetching username suggestions:", error);
-                feedbackDiv.textContent = "Sorry, an error occurred. Please try again.";
-                suggestions = []; // Reset suggestions
-            } finally {
-                suggestBtn.classList.remove('loading');
-                suggestBtn.disabled = false;
+    
+            } else {
+                // Handle cases where the name is not in our database
+                feedbackDiv.textContent = "Sorry, no suggestions for this name.";
+                currentSuggestions = []; // Reset suggestions
+                currentName = "";
             }
         });
     </script>
