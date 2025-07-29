@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Login Form</title>
+    <title>Animated Login/Register Form</title>
     <style>
         /* Basic setup to center the element on the page */
         body {
@@ -47,11 +47,12 @@
         .login-form h2 { margin-top: 0; margin-bottom: 20px; font-size: 2em; color: #333; animation: jump 1.5s ease-in-out infinite; }
         .welcome-text { color: #555; margin-top: 0; margin-bottom: 30px; font-size: 1em; }
         .input-box { position: relative; margin-bottom: 30px; }
+        .input-box.register-field { display: none; } /* Hide register fields by default */
         .input-box input { width: 100%; padding: 10px 0; font-size: 1em; color: #333; background: transparent; border: none; border-bottom: 2px solid #a7d8de; outline: none; }
         .input-box label { position: absolute; top: 0; left: 0; padding: 10px 0; font-size: 1em; color: #666; pointer-events: none; transition: .5s; }
         .input-box input:focus ~ label, .input-box input:valid ~ label { top: -20px; left: 0; color: #e91e63; font-size: 0.75em; }
         
-        .forgot-password { text-align: right; margin-top: -20px; margin-bottom: 20px; }
+        .forgot-password { text-align: right; margin-top: -20px; margin-bottom: 20px; transition: display 0.3s; }
         .forgot-password a { font-size: 0.9em; color: #673ab7; text-decoration: none; font-weight: bold; }
 
         #magic-link-section { max-height: 0; overflow: hidden; transition: max-height 0.7s ease-in-out, opacity 0.5s ease; opacity: 0; text-align: center; }
@@ -133,8 +134,15 @@
     <div class="box" id="loginBox">
         <form class="login-form" onsubmit="return false;">
             <div class="form-top">
-                <h2>Login</h2>
-                <p class="welcome-text">Welcome back!</p>
+                <h2 id="form-title">Login</h2>
+                <p class="welcome-text" id="welcome-text">Welcome back!</p>
+
+                <!-- This field will only show in register mode -->
+                <div class="input-box register-field">
+                    <input type="text" id="username" name="username" required="required">
+                    <label>Username</label>
+                </div>
+
                 <div class="input-box">
                     <input type="email" id="email" name="email" required="required">
                     <label>Email</label>
@@ -143,10 +151,11 @@
                     <input type="password" name="password" required="required">
                     <label>Password</label>
                 </div>
-                <div class="forgot-password">
+
+                <div class="forgot-password" id="forgot-password-section">
                     <a href="#" id="forgotPasswordLink">Forgot Password?</a>
                 </div>
-                <button type="submit" class="login-button">Log In</button>
+                <button type="submit" class="login-button" id="main-button">Log In</button>
             </div>
             
             <div id="magic-link-section">
@@ -157,7 +166,7 @@
             </div>
 
             <div class="form-bottom" style="margin-top:auto;">
-                <p class="divider">or log in with</p>
+                <p class="divider">or continue with</p>
                 <div class="social-buttons">
                     <button class="social-btn google" aria-label="Login with Google">
                         <svg viewBox="0 0 48 48"><path d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"></path></svg>
@@ -166,26 +175,80 @@
                         <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06c0 5.02 3.66 9.18 8.44 9.92v-7.03H7.9v-2.89h2.54V9.82c0-2.51 1.49-3.9 3.8-3.9 1.1 0 2.23.2 2.23.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.89h-2.33v7.03c4.78-.74 8.44-4.9 8.44-9.92C22 6.53 17.5 2.04 12 2.04z"></path></svg>
                     </button>
                 </div>
-                <p class="register-link">Don't have an account? <a href="#">Register</a></p>
+                <p class="register-link" id="toggle-container">
+                    <span id="toggle-text">Don't have an account? </span>
+                    <a href="#" id="toggle-link">Register</a>
+                </p>
             </div>
         </form>
     </div>
 
     <script>
+        // --- FORM TOGGLE SCRIPT (LOGIN/REGISTER) ---
+        const loginBox = document.getElementById('loginBox');
+        const formTitle = document.getElementById('form-title');
+        const welcomeText = document.getElementById('welcome-text');
+        const mainButton = document.getElementById('main-button');
+        const forgotPasswordSection = document.getElementById('forgot-password-section');
+        const registerFields = document.querySelectorAll('.register-field');
+        const toggleContainer = document.getElementById('toggle-container');
+        const toggleText = document.getElementById('toggle-text');
+        const toggleLink = document.getElementById('toggle-link');
+        let isRegisterMode = false;
+
+        toggleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            isRegisterMode = !isRegisterMode;
+
+            if (isRegisterMode) {
+                // --- Switch to Register View ---
+                formTitle.textContent = 'Register';
+                welcomeText.textContent = 'Create your account!';
+                mainButton.textContent = 'Register';
+                forgotPasswordSection.style.display = 'none';
+                magicLinkSection.classList.remove('show');
+                
+                registerFields.forEach(field => {
+                    field.style.display = 'block';
+                });
+                
+                toggleText.textContent = 'Already have an account? ';
+                toggleLink.textContent = 'Login';
+                loginBox.style.minHeight = '640px'; // Make box taller for extra field
+            } else {
+                // --- Switch to Login View ---
+                formTitle.textContent = 'Login';
+                welcomeText.textContent = 'Welcome back!';
+                mainButton.textContent = 'Log In';
+                forgotPasswordSection.style.display = 'block';
+
+                registerFields.forEach(field => {
+                    field.style.display = 'none';
+                });
+                
+                toggleText.textContent = "Don't have an account? ";
+                toggleLink.textContent = 'Register';
+                loginBox.style.minHeight = '580px'; // Return to original height
+            }
+        });
+
+
+        // --- MAGIC LINK EXPLANATION SCRIPT ---
         const forgotPasswordLink = document.getElementById('forgotPasswordLink');
         const magicLinkSection = document.getElementById('magic-link-section');
         const explainBtn = document.getElementById('explain-btn');
         const aiExplanationDiv = document.getElementById('ai-explanation');
-        const loginBox = document.getElementById('loginBox');
 
         forgotPasswordLink.addEventListener('click', (e) => {
             e.preventDefault();
             magicLinkSection.classList.toggle('show');
-            // Adjust box height
-            if (magicLinkSection.classList.contains('show')) {
-                loginBox.style.minHeight = '720px';
-            } else {
-                loginBox.style.minHeight = '580px';
+            // Adjust box height if not in register mode
+            if (!isRegisterMode) {
+                if (magicLinkSection.classList.contains('show')) {
+                    loginBox.style.minHeight = '720px';
+                } else {
+                    loginBox.style.minHeight = '580px';
+                }
             }
         });
 
