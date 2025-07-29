@@ -134,7 +134,7 @@
                         <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06c0 5.02 3.66 9.18 8.44 9.92v-7.03H7.9v-2.89h2.54V9.82c0-2.51 1.49-3.9 3.8-3.9 1.1 0 2.23.2 2.23.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.89h-2.33v7.03c4.78-.74 8.44-4.9 8.44-9.92C22 6.53 17.5 2.04 12 2.04z"></path></svg>
                     </button>
                 </div>
-                <p class="login-link">Already have an account? <a href="#">Log in</a></p>
+                <p class="login-link">Already have an account? <a href="login.html">Log in</a></p>
             </div>
         </form>
     </div>
@@ -171,7 +171,7 @@
 
             try {
                 // Construct the prompt for the Gemini API
-                const prompt = Suggest 5 creative and unique usernames for a user named '${fullName}' who is signing up for "NayaSa", an app about recycling clothes. The usernames should be trendy, positive, and related to sustainability or fashion. Return the result as a JSON object with a single key "usernames" which is an array of 5 username strings. For example: {"usernames": ["EcoChic${fullName.split(' ')[0]}", "ReStyle${fullName.split(' ')[0]}", "GreenThread${fullName.split(' ')[0]}", "NayaStyle", "UpcycleGuru"]};
+                const prompt = `Suggest 5 creative and unique usernames for a user named '${fullName}' who is signing up for "NayaSa", an app about recycling clothes. The usernames should be trendy, positive, and related to sustainability or fashion. Return the result as a JSON object with a single key "usernames" which is an array of 5 username strings. For example: {"usernames": ["EcoChic${fullName.split(' ')[0]}", "ReStyle${fullName.split(' ')[0]}", "GreenThread${fullName.split(' ')[0]}", "NayaStyle", "UpcycleGuru"]}`;
 
                 const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
                 const payload = { 
@@ -191,7 +191,7 @@
                 };
                 
                 const apiKey = ""; // API key will be provided by the environment
-                const apiUrl = https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey};
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
                 // Fetch suggestions from Gemini API
                 const response = await fetch(apiUrl, {
@@ -201,7 +201,7 @@
                 });
                 
                 if (!response.ok) {
-                    throw new Error(API call failed with status: ${response.status});
+                    throw new Error(`API call failed with status: ${response.status}`);
                 }
 
                 const result = await response.json();
